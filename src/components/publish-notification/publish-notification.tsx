@@ -11,8 +11,8 @@ export class PublishNotification {
   @Prop() isVisible: boolean;
 
   @State() publishData: any = {
-    recepients:['user_ccab3985-756a-4b47-a321-5815837ef718'],
-    type: 'ThermoFisher.Luna.Notification',
+    recipientAddresses:[],
+    type: '',
     payload: {
       title: '',
       description: '',
@@ -30,15 +30,19 @@ export class PublishNotification {
 
   inputChangeHandler(event) {
     const {name, value} = event.target;
-    if(name === 'recipients' || name === 'type'){
-      this.publishData[name] = (name === 'recipients') ? value.split(',') : value;
+    if(name === 'recipientAddresses' || name === 'type'){
+      this.publishData[name] = (name === 'recipientAddresses') ? value.split(',') : value;
     } else {
       this.publishData.payload[name] = value;
     }
   }
 
   publishClickHandler = () => {
-    this.publishNotification.emit(this.publishData);
+    if(this.publishData.recipientAddresses.length > 0){
+      this.publishNotification.emit(this.publishData);
+    }else{
+      alert('Please add recipientAddresses and try again.')
+    }
   }
 
   cancelClickHandler = () => {
@@ -54,12 +58,13 @@ export class PublishNotification {
             <h3 class='sectionHeader'>Send message</h3>
           </div>
             <div class='formfield'>
-              <label class="formLabel">Receipients:</label>
-              <textarea name='recipients' value={this.publishData.recepients[0]} onInput={(e) => this.inputChangeHandler(e)} />
+              <label class="formLabel">Recipients :</label>
+              <textarea name='recipientAddresses' onInput={(e) => this.inputChangeHandler(e)} />
             </div>
             <div class='formfield'>
               <label class="formLabel">Type:</label>
               <select name='type' onInput={(event) => this.inputChangeHandler(event)}>
+                <option value="none" selected disabled hidden>Select type</option>
                 <option value='ThermoFisher.Luna.Notification'>Luna Notification</option>
                 <option value='ThermoFisher.Luna.ToastNotification'>Toast Notification</option>
               </select>
@@ -76,6 +81,7 @@ export class PublishNotification {
               <div class='formfield'>
                 <label class="formLabel">Severity:</label>
                 <select name='severity' onInput={(event) => this.inputChangeHandler(event)}>
+                <option value="none" selected disabled hidden>Select severity</option>
                   <option value='Success'>Success</option>
                   <option value='Info'>Info</option>
                   <option value='Warning'>Warning</option>

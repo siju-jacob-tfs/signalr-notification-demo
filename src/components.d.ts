@@ -15,7 +15,6 @@ export namespace Components {
         "isVisible": boolean;
     }
     interface SubscribeNotification {
-        "userMailboxId": string;
     }
 }
 export interface NotificationCenterCustomEvent<T> extends CustomEvent<T> {
@@ -75,8 +74,8 @@ declare namespace LocalJSX {
         "onPublishNotification"?: (event: PublishNotificationCustomEvent<{}>) => void;
     }
     interface SubscribeNotification {
+        "onSetCredentials"?: (event: SubscribeNotificationCustomEvent<{}>) => void;
         "onSubscribeTopic"?: (event: SubscribeNotificationCustomEvent<{}>) => void;
-        "userMailboxId"?: string;
     }
     interface IntrinsicElements {
         "home-page": HomePage;

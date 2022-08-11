@@ -20,7 +20,7 @@ export class NotificationCenter {
     return (
       <div class="notification-center">
         <div>
-          <h3 class='sectionHeader'>{`Notification center(${this.messages.length})`}</h3>
+          <h3 class='sectionHeader'>Notification center(<span class="redText">{this.messages.length}</span>)</h3>
         </div>
           {this.messages.map(m => (
             <div data-messageId={m.id} onClick={(e) => this.clearClickHandler(e)} class="message-block">{m.description}-{m.id}</div>

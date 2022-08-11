@@ -19,6 +19,9 @@
   text-align: right;
   margin-right: 10px;
 }
+.redText{
+  color: red;
+}
 
 .button-section{
   margin: 5px;

@@ -4,20 +4,23 @@
 
 .subscribe-container{
   display: grid;
-  grid-template-columns: repeat(2, 1fr );
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  
   border: 1px solid rgb(214, 213, 213);
   border-radius: 5px;
   box-shadow: 3px 3px 15px 3px rgb(180, 188, 188);
 }
 
 .formfield{
-  margin: 20px;
+  margin: 20px 5px 0 20px;
+  display: block;
 }
 .formLabel{
   font-weight: bold;
-  
+}
+.helpText{
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 .formInput{
@@ -27,7 +30,15 @@
   padding: 5px;
   margin-top: 5px;
 }
-
+.credential-button{
+  font-size:18px;
+  width:240px;
+  height:50px;
+  border:1px solid #c3c3c5;
+  border-radius:3px;
+  margin: 20px;
+  transition: all 0.6s ease;
+}
 
 .demo-button {
   font-size:18px;

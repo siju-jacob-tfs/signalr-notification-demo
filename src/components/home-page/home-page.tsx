@@ -10,31 +10,43 @@ import { ApplicationDataService, NotificationHub } from '@thermo/appspace-librar
 export class HomePage {
 
   @State() apiURL: string = 'https://api.hyperbridge-xpanse.cmddev.thermofisher.com';
-  @State() currentUserMailBoxId: string = '';
   @State() token: string = '';
+  @State() currentUserMailBoxId: string = '';
   @State() isModalVisible:boolean = false;
   @State() messages: Array<any> = [];
+  
+
   
   private _notificationService: NotificationHub;
   componentWillLoad(){
     ApplicationDataService.Instance.setApiURL(this.apiURL);
-    ApplicationDataService.Instance.setToken(this.token);
     this._notificationService = NotificationHub.Instance;
-    console.clear();
   }
 
+  @Listen('setCredentials', { target: 'window' })
+  setCredentialsHandler(data:any) {
+    const userDetails = data.detail;
+    console.log('setCredentialsHandler : userDetails : ', userDetails);
+    this.currentUserMailBoxId = userDetails.userMailboxId;
+    ApplicationDataService.Instance.setToken(userDetails.accessToken);
+  }
+  
   @Listen('subscribeTopic', { target: 'window' })
-  subscribeHandler() {
+  subscribeHandler(data:any) {
+    const userDetails = data.detail;
     this._notificationService.init().then(async () => {
-      console.log('subscribeHandler :: mailBoxId : ', this.currentUserMailBoxId);
+      console.log('subscribeHandler :: userDetails : ', userDetails);
+      this.currentUserMailBoxId = userDetails.userMailboxId;
       let subsciberId = await this._notificationService.subscribe(this.currentUserMailBoxId, this.notificationHandler.bind(this));
       console.log('subsciberId : ', subsciberId);
     });
   }
+
   @Listen('cancelNotification', { target: 'window' })
   cancelNotificationHandler() {
     this.isModalVisible = false;
   }
+
   @Listen('clearMessage', { target: 'window' })
   clearAllMessagesHandler(data:any) {
     console.log('clearAllMessagesHandler : data : ', data);
@@ -49,16 +61,15 @@ export class HomePage {
   publisherHandler(ev: any) {
     const publishData = ev.detail || {};
     console.log('publisherHandler :: publishData : ', publishData);
-    this._notificationService.sendNotification(this.currentUserMailBoxId, publishData.payload, publishData.type, publishData.recepients ).then((res) => {
+    this._notificationService.sendNotification(this.currentUserMailBoxId, publishData.payload, publishData.type, publishData.recipientAddresses ).then((res) => {
       console.log('publisherHandler :: SUCCESS res: ', res);
     }).catch((err) => {
       console.log('publisherHandler err : ', err);
-      alert('Please update the TOKEN and try again.');
     });
     this.togglePublishModal();
   }
 
-  notificationHandler = (data) => {
+  notificationHandler = (data:any) => {
     console.log('notificationListner :: data : ', data);
     const { description, severity} = data.payload;
     let thisMessage = {
@@ -88,7 +99,7 @@ export class HomePage {
       </header>
         <div class="main">
           <div>
-            <subscribe-notification userMailboxId={this.currentUserMailBoxId}></subscribe-notification>
+            <subscribe-notification></subscribe-notification>
             <div class="button-section">
               <button class="demo-button" onClick={() => this.togglePublishModal()}>Publish</button>
             </div>
