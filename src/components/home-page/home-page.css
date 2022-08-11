@@ -1,0 +1,34 @@
+:host {
+  display: block;
+}
+
+.main{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-top: 50px;
+}
+
+.demo-button {
+  font-size:18px;
+  width:140px;
+  height:50px;
+  border:1px solid #c3c3c5;
+  border-radius:3px;
+  margin: 20px;
+  transition: all 0.3s ease;
+}
+
+.demo-button:hover {
+  box-shadow: 1px 1px 12px 1px rgb(180, 188, 188);
+  cursor: pointer;
+}
+
+.button-section{
+  margin-top: 20px;
+  border: 1px solid rgb(214, 213, 213);
+  border-radius: 5px;
+  box-shadow: 3px 3px 15px 3px rgb(180, 188, 188);
+}

@@ -1,0 +1,34 @@
+:host {
+  display: block;
+}
+.notification-center{
+  width: 400px;
+  float: right;
+  border: 1px solid rgb(214, 213, 213);
+  border-radius: 5px;
+  box-shadow: 3px 3px 15px 3px rgb(180, 188, 188);
+}
+.message-block{
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: rgb(231, 226, 226);
+  height: 50px;
+  margin: 5px 5px;
+}
+.sectionHeader{
+  text-align: right;
+  margin-right: 10px;
+}
+
+.button-section{
+  margin: 5px;
+  float: right;
+}
+
+
+.clear-button {
+  width:100px;
+  height:30px;
+  border:1px solid #333;
+  border-radius:3px;
+}
