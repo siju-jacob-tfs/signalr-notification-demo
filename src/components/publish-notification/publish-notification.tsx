@@ -94,8 +94,10 @@ export class PublishNotification {
             
           </div>
           <div class='section'>
-              <button onClick={this.publishClickHandler}>Send</button>
-              <button onClick={this.cancelClickHandler}>Cancel</button>
+              <div class="button-section">
+                <button onClick={this.publishClickHandler}>Send</button>
+                <button onClick={this.cancelClickHandler}>Cancel</button>
+              </div>
             </div>
         </div>
       </div>
