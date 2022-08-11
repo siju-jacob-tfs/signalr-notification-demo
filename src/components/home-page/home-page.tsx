@@ -86,7 +86,7 @@ export class HomePage {
       <header>SignalR Appspace Demo</header>
         <div class="main">
           <div>
-            <subscribe-notification></subscribe-notification>
+            <subscribe-notification userMailboxId={this.currentUserMailBoxId}></subscribe-notification>
             <div class="button-section">
               <button class="demo-button" onClick={() => this.togglePublishModal()}>Publish</button>
             </div>

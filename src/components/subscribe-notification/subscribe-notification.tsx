@@ -1,4 +1,4 @@
-import { Component, h, EventEmitter, Event } from '@stencil/core';
+import { Component, h, EventEmitter, Event, Prop } from '@stencil/core';
 
 @Component({
   tag: 'subscribe-notification',
@@ -7,16 +7,21 @@ import { Component, h, EventEmitter, Event } from '@stencil/core';
 })
 export class SubscribeNotification {
   @Event() subscribeTopic:EventEmitter<{}>;
+  @Prop() userMailboxId:string;
 
   subscribeClickHandler = () => {
-    this.subscribeTopic.emit();
+    if(this.userMailboxId){
+      this.subscribeTopic.emit();
+    }else{
+      alert("Please enter mailBoxId and try again.")
+    }
   }
   render() {
     return (<div class="subscribe-container">
               <button class="demo-button" onClick={this.subscribeClickHandler}>Subscribe</button>
               <div class='formfield'>
                 <label class="formLabel">Topic/MailBoxId:</label>
-                <input class="formInput" value='user_ccab3985-756a-4b47-a321-5815837ef718'/>
+                <input class="formInput" value={this.userMailboxId}/>
               </div>
           </div>
     );
