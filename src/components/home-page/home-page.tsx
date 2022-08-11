@@ -83,7 +83,9 @@ export class HomePage {
 
   render() {
     return <div class="homePage">
-      <header>SignalR Appspace Demo</header>
+      <header>
+        <h3>SignalR Appspace Demo</h3>
+      </header>
         <div class="main">
           <div>
             <subscribe-notification userMailboxId={this.currentUserMailBoxId}></subscribe-notification>

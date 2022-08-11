@@ -2,13 +2,28 @@
   display: block;
 }
 
+header{
+  width: 100%;
+  display: grid;
+  place-items: center;
+  height: 100px;
+  background: #e2f0f7;
+}
+
+footer{
+  width: 100%;
+  display: grid;
+  place-items: center;
+  height: 50px;
+  background: #e2f0f7;
+}
+
 .main{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  margin-top: 50px;
+  min-height: 75vh;
+
 }
 
 .demo-button {
