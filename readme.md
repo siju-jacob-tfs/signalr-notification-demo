@@ -16,6 +16,6 @@ Set the token and mailBoxId(Topic)
 
 Token : Get token from hyperbridge network tab and copy the token without "Bearer" keyword
 
-MainboxId :  Naming convention is user_<user Id>
+MainboxId :  Naming convention is user_[userId]
 
 
