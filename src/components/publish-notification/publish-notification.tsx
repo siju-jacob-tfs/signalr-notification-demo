@@ -17,7 +17,7 @@ export class PublishNotification {
       title: '',
       description: '',
       severity: 'Success',
-      priority: '1',
+      priority: 1,
       longDescription: ''
     }
   };
@@ -32,6 +32,8 @@ export class PublishNotification {
     const {name, value} = event.target;
     if(name === 'recipientAddresses' || name === 'type'){
       this.publishData[name] = (name === 'recipientAddresses') ? value.split(',') : value;
+    } else if(name === 'priority'){
+      this.publishData.payload[name] = Number(value);
     } else {
       this.publishData.payload[name] = value;
     }
